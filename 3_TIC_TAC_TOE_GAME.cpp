@@ -3,12 +3,12 @@ using namespace std;
 
 char space[3][3] = {{'1', '2', '3'}, {'4', '5', '6'}, {'7', '8', '9'}};
 int row, col;
-char token = 'X';
+char cross = 'X';
 bool draw = false;
 string player1, player2;
 
 void displayBoard() {
-    system("clear");  // For Linux/macOS, use "cls" for Windows.
+    system("clear"); 
     cout << "    |    |    \n";
     cout << "  " << space[0][0] << " | " << space[0][1] << "  | " << space[0][2] << " \n";
     cout << "\n";
@@ -22,7 +22,7 @@ void displayBoard() {
 
 void takeInput() {
     int position;
-    if (token == 'X') {
+    if (cross == 'X') {
         cout << player1 << "'s turn (X), choose a position (1-9): ";
     } else {
         cout << player2 << "'s turn (O), choose a position (1-9): ";
@@ -35,8 +35,8 @@ void takeInput() {
         col = (position - 1) % 3;
 
         if (space[row][col] != 'X' && space[row][col] != 'O') {
-            space[row][col] = token;
-            token = (token == 'X') ? 'O' : 'X';
+            space[row][col] = cross;
+            cross = (cross == 'X') ? 'O' : 'X';
         } else {
             cout << "Position already taken! Try again.\n";
             takeInput();
@@ -80,7 +80,7 @@ void startGame() {
 
         if (checkWin()) {
             displayBoard();
-            cout << (token == 'X' ? player2 : player1) << " wins!\n";
+            cout << (cross == 'X' ? player2 : player1) << " wins!\n";
             break;
         }
 
